@@ -1,4 +1,4 @@
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 # Licence:
 # Copyright (c) 2012-2022 Valerio for Gecosistema S.r.l.
 #
@@ -15,11 +15,22 @@
 # OTHER DEALINGS IN THE SOFTWARE.
 #
 #
-# Name:        __init__.py
+# Name:        raster.py
 # Purpose:
 #
 # Author:      Luzzi Valerio
 #
 # Created:
-#-------------------------------------------------------------------------------
-from src.module_qlr.module_qlr import create_qlr
+# -------------------------------------------------------------------------------
+import os
+from module_qlr import create_qlr
+
+
+if __name__ == "__main__":
+
+    workdir, _ = os.path.split(__file__)
+    filename = f"{workdir}/COPERNICUS_EUDEM_101108.tif"
+
+
+    create_qlr( filename, cmapname="copper")
+    print("done!")

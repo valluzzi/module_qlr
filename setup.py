@@ -1,7 +1,7 @@
 import setuptools
 
-
 VERSION = "0.0.1"
+
 PACKAGE_NAME = "module_qlr"
 AUTHOR = "Valerio Luzzi"
 EMAIL = "valerio.luzzi@gecosistema.com"
