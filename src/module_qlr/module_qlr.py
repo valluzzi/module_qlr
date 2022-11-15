@@ -165,7 +165,8 @@ def create_qlr(filename, fileqlr="", cmapname="viridis"):
                 fill_color = "#127db9"
             else:
                 metadata = {}
-
+        else:
+            return None
 
         # Metadata in customproperties
         for key in metadata:
