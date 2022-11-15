@@ -31,9 +31,21 @@ import jenkspy
 import matplotlib
 import matplotlib.cm
 import numpy as np
-
+from osgeo import ogr
 from .filesystem import juststem, justfname, forceext, justext
 from gdal2numpy import GDAL2Numpy, GetMetaData, GetSpatialRef, GetExtent, GetMinMax
+
+def GetGeomTypeName(filename):
+    """
+    GetType
+    """
+    ds = ogr.OpenShared(filename)
+    if ds:
+        layer = ds.GetLayer()
+        type = layer.GetGeomType()
+        ds = None
+        return ogr.GeometryTypeToName(type)
+    return None
 
 
 def get_colors(cmapname, n_classes):
@@ -89,6 +101,7 @@ def create_qlr(filename, fileqlr="", cmapname="viridis"):
     """
 
     if os.path.isfile(filename):
+        filetpl = ""
         fileqlr = fileqlr if fileqlr else forceext(filename, "qlr")
         minValue, maxValue = GetMinMax(filename) if justext(filename) == "tif" else 0, 0
 
@@ -99,53 +112,54 @@ def create_qlr(filename, fileqlr="", cmapname="viridis"):
         ext = justext(filename).lower()
 
         # Redefine sand, silt, clay cmap
-        if ext == "tif" and cmapname == "sand":  # sabbia
+        if ext == "tif":
+            filetpl = pkg_resources.resource_filename(__name__, "data/raster.qlr")
+            if cmapname == "sand":  # sabbia
+                metadata = {"um": "%", "type": "sand"}
+                classes = compute_depth_scale(filename, n_classes=8, cmapname="copper")
+                for item in classes:
+                    items += f"""<item color="{item["color"]}" label="{item["label"]}" value="{item["value"]}" alpha="{item["alpha"]}"/>\n"""
+            elif cmapname == "clay":  # argilla
+                metadata = {"um": "%", "type": "clay"}
+                classes = compute_depth_scale(filename, n_classes=8, cmapname="gist_heat")
+                for item in classes:
+                    items += f"""<item color="{item["color"]}" label="{item["label"]}" value="{item["value"]}" alpha="{item["alpha"]}"/>\n"""
+            elif cmapname == "silt":  # limo
+                metadata = {"um": "%", "type": "silt"}
+                classes = compute_depth_scale(filename, n_classes=8, cmapname="bone")
+                for item in classes:
+                    items += f"""<item color="{item["color"]}" label="{item["label"]}" value="{item["value"]}" alpha="{item["alpha"]}"/>\n"""
+            else:
+                # Generic GTiff
+                metadata = GetMetaData(filename)
+                metadata = metadata["metadata"] if "metadata" in metadata else {}
+                classes = compute_depth_scale(filename, n_classes=8, cmapname=cmapname)
+                for item in classes:
+                    items += f"""<item color="{item["color"]}" label="{item["label"]}" value="{item["value"]}" alpha="{item["alpha"]}"/>\n"""
 
-            classes = compute_depth_scale(filename, n_classes=8, cmapname="copper")
-            for item in classes:
-                items += f"""<item color="{item["color"]}" label="{item["label"]}" value="{item["value"]}" alpha="{item["alpha"]}"/>\n"""
-
-            metadata = {"um": "%", "type": "sand"}
-
-        elif ext == "tif" and cmapname == "clay":  # argilla
-
-            classes = compute_depth_scale(filename, n_classes=8, cmapname="gist_heat")
-            for item in classes:
-                items += f"""<item color="{item["color"]}" label="{item["label"]}" value="{item["value"]}" alpha="{item["alpha"]}"/>\n"""
-
-            metadata = {"um": "%", "type": "clay"}
-
-        elif ext == "tif" and cmapname == "silt":  # limo
-
-            classes = compute_depth_scale(filename, n_classes=8, cmapname="bone")
-            for item in classes:
-                items += f"""<item color="{item["color"]}" label="{item["label"]}" value="{item["value"]}" alpha="{item["alpha"]}"/>\n"""
-
-            metadata = {"um": "%", "type": "silt"}
-
-        elif ext == "tif":
-
-            classes = compute_depth_scale(filename, n_classes=8, cmapname=cmapname)
-
-            for item in classes:
-                items += f"""<item color="{item["color"]}" label="{item["label"]}" value="{item["value"]}" alpha="{item["alpha"]}"/>\n"""
-
-            """
-            <item color="#431be9" label="0,0000" value="0" alpha="255"/>
-            <item color="#3254de" label="0,7500" value="0.75" alpha="255"/>
-            <item color="#218dd3" label="1,5000" value="1.5" alpha="255"/>
-            <item color="#10c6c8" label="2,2500" value="2.25" alpha="255"/>
-            <item color="#00ffbd" label="3,0000" value="3" alpha="255"/>
-            """
-
-            metadata = GetMetaData(filename)
-            metadata = metadata["metadata"] if "metadata" in metadata else {}
-        elif ext == "shp" and cmapname == "infiltration_rate":
-            metadata = {"um": "--", "type": "infiltration_rate"}
-        elif ext == "shp" and cmapname == "buildings":
-            metadata = {"um": "--", "type": "buildings"}
-        else:
+                """
+                <item color="#431be9" label="0,0000" value="0" alpha="255"/>
+                <item color="#3254de" label="0,7500" value="0.75" alpha="255"/>
+                <item color="#218dd3" label="1,5000" value="1.5" alpha="255"/>
+                <item color="#10c6c8" label="2,2500" value="2.25" alpha="255"/>
+                <item color="#00ffbd" label="3,0000" value="3" alpha="255"/>
+                """
+        # Vector
+        elif ext == "shp":
+            geomtype = GetGeomTypeName(filename)
+            filetpl = pkg_resources.resource_filename(__name__, "data/Polygon.qlr")
             metadata = {}
+            if cmapname == "infiltration_rate":
+                filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
+                metadata = {"um": "--", "type": "infiltration_rate"}
+            elif cmapname == "buildings":
+                filetpl = pkg_resources.resource_filename(__name__, "data/Polygon.qlr")
+                metadata = {"um": "--", "type": "buildings"}
+                fill_color = "#888888"
+            elif geomtype in ("Point", "Line String", "Polygon"):
+                filetpl = pkg_resources.resource_filename(__name__, f"data/{geomtype}.qlr")
+                metadata = {}
+
 
         # Metadata in customproperties
         for key in metadata:
@@ -163,7 +177,7 @@ def create_qlr(filename, fileqlr="", cmapname="viridis"):
             "proj4": srs.ExportToProj4(),
             "srsid": 0,
             "srid": srs.GetAuthorityCode(None),
-            "authid": srs.GetAuthorityName(None) + ":" + srs.GetAuthorityCode(None),
+            "authid": f"{srs.GetAuthorityName(None)}:{srs.GetAuthorityCode(None)}",
             "description": srs.GetName(),
             "projectionacronym": "utm",
             "ellipsoidacronym": "EPSG:7030",
@@ -171,17 +185,9 @@ def create_qlr(filename, fileqlr="", cmapname="viridis"):
             "minValue": minValue,
             "maxValue": maxValue,
             "itemList": items,
-            "customproperties": customproperties
+            "customproperties": customproperties,
+            "fill_color": "#ffffff"
         }
-
-        if justext(filename) == "tif":
-            filetpl = pkg_resources.resource_filename(__name__, "data/raster.qlr")
-        elif justext(filename) == "shp" and cmapname == "infiltration_rate":
-            filetpl = pkg_resources.resource_filename(__name__, "data/infiltration_rate.qlr")
-        elif justext(filename) == "shp":
-            filetpl = pkg_resources.resource_filename(__name__, "data/vector.qlr")
-        else:
-            filetpl = ""
 
         # read the template .qlr
         text = ""
