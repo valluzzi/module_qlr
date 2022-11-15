@@ -2,7 +2,7 @@
 <qlr>
   <layer-tree-group checked="Qt::Checked" name="" expanded="1">
     <customproperties/>
-    <layer-tree-layer id="streams_20221115133526" checked="Qt::Checked" providerKey="ogr" legend_exp="" legend_split_behavior="0" name="streams" source="streams.shp" expanded="1" patch_size="-1,-1">
+    <layer-tree-layer id="streams_20221115160550" checked="Qt::Checked" providerKey="ogr" legend_exp="" legend_split_behavior="0" name="streams" source="streams.shp" expanded="1" patch_size="-1,-1">
       <customproperties/>
     </layer-tree-layer>
   </layer-tree-group>
@@ -14,7 +14,7 @@
         <xmax>-8918766.749740439</xmax>
         <ymax>2883669.2003110754</ymax>
       </extent>
-      <id>streams_20221115133526</id>
+      <id>streams_20221115160550</id>
       <datasource>streams.shp</datasource>
       <keywordList>
         <value></value>
@@ -109,7 +109,7 @@
               <prop k="dash_pattern_offset_unit" v="MM"/>
               <prop k="draw_inside_polygon" v="0"/>
               <prop k="joinstyle" v="bevel"/>
-              <prop k="line_color" v="219,30,42,255"/>
+              <prop k="line_color" v="#127db9"/>
               <prop k="line_style" v="solid"/>
               <prop k="line_width" v="0.66"/>
               <prop k="line_width_unit" v="MM"/>
@@ -134,6 +134,7 @@
         <sizescale/>
       </renderer-v2>
       <customproperties>
+		<property key="type" value="streams"/>
 
       </customproperties>
       <blendMode>0</blendMode>
@@ -155,7 +156,7 @@
                 <prop k="dash_pattern_offset_unit" v="MM"/>
                 <prop k="draw_inside_polygon" v="0"/>
                 <prop k="joinstyle" v="bevel"/>
-                <prop k="line_color" v="#ffffff"/>
+                <prop k="line_color" v="35,35,35,255"/>
                 <prop k="line_style" v="solid"/>
                 <prop k="line_width" v="0.26"/>
                 <prop k="line_width_unit" v="MM"/>

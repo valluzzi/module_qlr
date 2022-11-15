@@ -2,7 +2,7 @@
 <qlr>
   <layer-tree-group name="" expanded="1" checked="Qt::Checked">
     <customproperties/>
-    <layer-tree-layer source="watersheds.labels.shp" name="watersheds.labels" legend_exp="" legend_split_behavior="0" providerKey="ogr" expanded="1" id="watersheds.labels_20221115133526" patch_size="-1,-1" checked="Qt::Checked">
+    <layer-tree-layer source="watersheds.labels.shp" name="watersheds.labels" legend_exp="" legend_split_behavior="0" providerKey="ogr" expanded="1" id="watersheds.labels_20221115160550" patch_size="-1,-1" checked="Qt::Checked">
       <customproperties/>
     </layer-tree-layer>
   </layer-tree-group>
@@ -14,7 +14,7 @@
         <xmax>-8918782.04974044</xmax>
         <ymax>2883667.5003110757</ymax>
       </extent>
-      <id>watersheds.labels_20221115133526</id>
+      <id>watersheds.labels_20221115160550</id>
       <datasource>watersheds.labels.shp</datasource>
       <keywordList>
         <value></value>
@@ -83,7 +83,7 @@
           <symbol name="0" clip_to_extent="1" type="fill" force_rhr="0" alpha="1">
             <layer enabled="1" pass="0" class="SimpleFill" locked="0">
               <prop v="3x:0,0,0,0,0,0" k="border_width_map_unit_scale"/>
-              <prop v="#ffffff" k="color"/>
+              <prop v="#cae1e9" k="color"/>
               <prop v="bevel" k="joinstyle"/>
               <prop v="0,0" k="offset"/>
               <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
@@ -107,6 +107,7 @@
         <sizescale/>
       </renderer-v2>
       <customproperties>
+		<property key="type" value="watersheds"/>
 
       </customproperties>
       <blendMode>0</blendMode>

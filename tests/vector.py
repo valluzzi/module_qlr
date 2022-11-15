@@ -29,8 +29,13 @@ from module_qlr import create_qlr
 if __name__ == "__main__":
 
     workdir, _ = os.path.split(__file__)
-    filenames = [f"{workdir}/infiltration_rate.shp", f"{workdir}/streams.shp", f"{workdir}/pourpoints.shp", f"{workdir}/watersheds.labels.shp"]
+    filename = f"{workdir}/infiltration_rate.shp"
+    create_qlr(filename, cmapname="infiltration_rate")
+    filename = f"{workdir}/streams.shp"
+    create_qlr(filename, cmapname="streams")
+    filename = f"{workdir}/pourpoints.shp"
+    create_qlr(filename)
+    filename = f"{workdir}/watersheds.labels.shp"
+    create_qlr(filename, cmapname="watersheds")
 
-    for filename in filenames:
-        create_qlr(filename)
     print("done!")

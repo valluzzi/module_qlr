@@ -109,7 +109,9 @@ def create_qlr(filename, fileqlr="", cmapname="viridis"):
         minx, miny, maxx, maxy = GetExtent(filename)
         items = ""
         customproperties = ""
+        fill_color = "#ffffff"
         ext = justext(filename).lower()
+
 
         # Redefine sand, silt, clay cmap
         if ext == "tif":
@@ -117,25 +119,18 @@ def create_qlr(filename, fileqlr="", cmapname="viridis"):
             if cmapname == "sand":  # sabbia
                 metadata = {"um": "%", "type": "sand"}
                 classes = compute_depth_scale(filename, n_classes=8, cmapname="copper")
-                for item in classes:
-                    items += f"""<item color="{item["color"]}" label="{item["label"]}" value="{item["value"]}" alpha="{item["alpha"]}"/>\n"""
             elif cmapname == "clay":  # argilla
                 metadata = {"um": "%", "type": "clay"}
                 classes = compute_depth_scale(filename, n_classes=8, cmapname="gist_heat")
-                for item in classes:
-                    items += f"""<item color="{item["color"]}" label="{item["label"]}" value="{item["value"]}" alpha="{item["alpha"]}"/>\n"""
             elif cmapname == "silt":  # limo
                 metadata = {"um": "%", "type": "silt"}
                 classes = compute_depth_scale(filename, n_classes=8, cmapname="bone")
-                for item in classes:
-                    items += f"""<item color="{item["color"]}" label="{item["label"]}" value="{item["value"]}" alpha="{item["alpha"]}"/>\n"""
             else:
                 # Generic GTiff
                 metadata = GetMetaData(filename)
                 metadata = metadata["metadata"] if "metadata" in metadata else {}
                 classes = compute_depth_scale(filename, n_classes=8, cmapname=cmapname)
-                for item in classes:
-                    items += f"""<item color="{item["color"]}" label="{item["label"]}" value="{item["value"]}" alpha="{item["alpha"]}"/>\n"""
+
 
                 """
                 <item color="#431be9" label="0,0000" value="0" alpha="255"/>
@@ -144,18 +139,34 @@ def create_qlr(filename, fileqlr="", cmapname="viridis"):
                 <item color="#10c6c8" label="2,2500" value="2.25" alpha="255"/>
                 <item color="#00ffbd" label="3,0000" value="3" alpha="255"/>
                 """
+            # for all tif
+            for item in classes:
+                items += f"""<item color="{item["color"]}" label="{item["label"]}" value="{item["value"]}" alpha="{item["alpha"]}"/>\n"""
         # Vector
         elif ext == "shp":
             geomtype = GetGeomTypeName(filename)
             filetpl = pkg_resources.resource_filename(__name__, "data/Polygon.qlr")
             metadata = {}
+
             if cmapname == "infiltration_rate":
                 filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
                 metadata = {"um": "--", "type": "infiltration_rate"}
             elif cmapname == "buildings":
                 filetpl = pkg_resources.resource_filename(__name__, "data/Polygon.qlr")
-                metadata = {"um": "--", "type": "buildings"}
+                metadata = {"type": "buildings"}
                 fill_color = "#888888"
+            elif cmapname == "bluespots":
+                filetpl = pkg_resources.resource_filename(__name__, "data/Polygon.qlr")
+                metadata = {"type": "bluespots"}
+                fill_color = "#358ab8"
+            elif cmapname == "watersheds":
+                filetpl = pkg_resources.resource_filename(__name__, "data/Polygon.qlr")
+                metadata = {"type": "watersheds"}
+                fill_color = "#cae1e9"
+            elif cmapname == "streams":
+                filetpl = pkg_resources.resource_filename(__name__, "data/Line String.qlr")
+                metadata = {"type": "streams"}
+                fill_color = "#127db9"
             elif geomtype in ("Point", "Line String", "Polygon"):
                 filetpl = pkg_resources.resource_filename(__name__, f"data/{geomtype}.qlr")
                 metadata = {}
@@ -186,7 +197,7 @@ def create_qlr(filename, fileqlr="", cmapname="viridis"):
             "maxValue": maxValue,
             "itemList": items,
             "customproperties": customproperties,
-            "fill_color": "#ffffff"
+            "fill_color": fill_color
         }
 
         # read the template .qlr
