@@ -145,30 +145,25 @@ def create_qlr(filename, fileqlr="", cmapname="viridis"):
         # Vector
         elif ext == "shp":
             geomtype = GetGeomTypeName(filename)
-            filetpl = pkg_resources.resource_filename(__name__, "data/Polygon.qlr")
-            metadata = {}
+            filetpl = pkg_resources.resource_filename(__name__, f"data/{geomtype}.qlr")
+            metadata = {"type": cmapname}
 
             if cmapname == "infiltration_rate":
-                filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
-                metadata = {"um": "--", "type": "infiltration_rate"}
+                #fill_color = "#888888"
+                pass
             elif cmapname == "buildings":
-                filetpl = pkg_resources.resource_filename(__name__, "data/Polygon.qlr")
-                metadata = {"type": "buildings"}
                 fill_color = "#888888"
             elif cmapname == "bluespots":
-                filetpl = pkg_resources.resource_filename(__name__, "data/Polygon.qlr")
-                metadata = {"type": "bluespots"}
                 fill_color = "#358ab8"
             elif cmapname == "watersheds":
-                filetpl = pkg_resources.resource_filename(__name__, "data/Polygon.qlr")
-                metadata = {"type": "watersheds"}
                 fill_color = "#cae1e9"
             elif cmapname == "streams":
-                filetpl = pkg_resources.resource_filename(__name__, "data/Line String.qlr")
-                metadata = {"type": "streams"}
                 fill_color = "#127db9"
-            elif geomtype in ("Point", "Line String", "Polygon"):
-                filetpl = pkg_resources.resource_filename(__name__, f"data/{geomtype}.qlr")
+            elif cmapname == "barrier":
+                fill_color = "#127db9"
+            elif cmapname == "storagetank":
+                fill_color = "#127db9"
+            else:
                 metadata = {}
 
 
