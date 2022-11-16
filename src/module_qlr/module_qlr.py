@@ -125,6 +125,9 @@ def create_qlr(filename, fileqlr="", cmapname="viridis"):
             elif cmapname == "silt":  # limo
                 metadata = {"um": "%", "type": "silt"}
                 classes = compute_depth_scale(filename, n_classes=8, cmapname="bone")
+            elif cmapname == "infiltration_rate":  # landuse
+                metadata = {"type": "landuse"}
+                classes = compute_depth_scale(filename, n_classes=8, cmapname="bone")
             else:
                 # Generic GTiff
                 metadata = GetMetaData(filename)
@@ -149,8 +152,7 @@ def create_qlr(filename, fileqlr="", cmapname="viridis"):
             metadata = {"type": cmapname}
 
             if cmapname == "infiltration_rate":
-                #fill_color = "#888888"
-                pass
+                filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
             elif cmapname == "buildings":
                 fill_color = "#888888"
             elif cmapname == "bluespots":
@@ -160,8 +162,10 @@ def create_qlr(filename, fileqlr="", cmapname="viridis"):
             elif cmapname == "streams":
                 fill_color = "#127db9"
             elif cmapname == "barrier":
+                filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
                 fill_color = "#127db9"
             elif cmapname == "storagetank":
+                filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
                 fill_color = "#127db9"
             else:
                 metadata = {}
