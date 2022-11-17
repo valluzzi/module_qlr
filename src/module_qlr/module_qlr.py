@@ -116,7 +116,19 @@ def create_qlr(filename, fileqlr="", cmapname="viridis"):
         # Redefine sand, silt, clay cmap
         if ext == "tif":
             filetpl = pkg_resources.resource_filename(__name__, "data/raster.qlr")
-            if cmapname == "sand":  # sabbia
+            if cmapname == "dtm":  # dtm
+                metadata = {"um": "m", "type": "dtm"}
+                classes = compute_depth_scale(filename, n_classes=8, cmapname="viridis")
+            elif cmapname == "water_depth":  # water_depth
+                metadata = {"um": "m", "type": "water_depth"}
+                classes = [
+                    {"color": "#431be9", "label": 0.0,  "value": 0,    "alpha": 255},
+                    {"color": "#3254de", "label": 0.75, "value": 0.75, "alpha": 255},
+                    {"color": "#218dd3", "label": 1.5,  "value": 1.5,  "alpha": 255},
+                    {"color": "#10c6c8", "label": 2.25, "value": 2.25, "alpha": 255},
+                    {"color": "#00ffbd", "label": 3.0,  "value": 3.0,  "alpha": 255},
+                ]
+            elif cmapname == "sand":  # sabbia
                 metadata = {"um": "%", "type": "sand"}
                 classes = compute_depth_scale(filename, n_classes=8, cmapname="copper")
             elif cmapname == "clay":  # argilla
