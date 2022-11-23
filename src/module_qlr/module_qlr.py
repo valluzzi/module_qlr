@@ -33,7 +33,7 @@ import matplotlib.cm
 import numpy as np
 from osgeo import ogr
 from .filesystem import juststem, justfname, forceext, justext
-from gdal2numpy import GDAL2Numpy, GetMetaData, GetSpatialRef, GetExtent, GetMinMax
+from gdal2numpy import GDAL2Numpy, GetMetaData, GetSpatialRef, GetExtent, GetMinMax, GetTag
 
 def GetGeomTypeName(filename):
     """
@@ -95,7 +95,7 @@ def compute_depth_scale(filepath, n_classes=7, cmapname="viridis"):
     return classes
 
 
-def create_qlr(filename, fileqlr="", cmapname="viridis"):
+def create_qlr(filename, fileqlr="", cmapname=None):
     """
     create_qlr - from template
     """
@@ -115,6 +115,8 @@ def create_qlr(filename, fileqlr="", cmapname="viridis"):
 
         # Redefine sand, silt, clay cmap
         if ext == "tif":
+            cmapname = cmapname if cmapname else GetTag(filename, "type")
+
             filetpl = pkg_resources.resource_filename(__name__, "data/raster.qlr")
             if cmapname == "dtm":  # dtm
                 metadata = {"um": "m", "type": "dtm"}
@@ -142,11 +144,10 @@ def create_qlr(filename, fileqlr="", cmapname="viridis"):
                 classes = compute_depth_scale(filename, n_classes=8, cmapname="bone")
             else:
                 # Generic GTiff
+                cmapname = cmapname if cmapname else "viridis"
                 metadata = GetMetaData(filename)
                 metadata = metadata["metadata"] if "metadata" in metadata else {}
                 classes = compute_depth_scale(filename, n_classes=8, cmapname=cmapname)
-
-
                 """
                 <item color="#431be9" label="0,0000" value="0" alpha="255"/>
                 <item color="#3254de" label="0,7500" value="0.75" alpha="255"/>

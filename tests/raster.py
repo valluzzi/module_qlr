@@ -23,14 +23,16 @@
 # Created:
 # -------------------------------------------------------------------------------
 import os
+from gdal2numpy import *
 from module_qlr import create_qlr
 
 
 if __name__ == "__main__":
 
     workdir, _ = os.path.split(__file__)
-    filename = f"{workdir}/COPERNICUS_EUDEM_101108.tif"
+    filename = f"{workdir}/WD_RAIN3229.tif"
 
-
-    create_qlr( filename, cmapname="copper")
+    t = GetTag(filename, "xxx")
+    print(t)
+    #create_qlr( filename)
     print("done!")
