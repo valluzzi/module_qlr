@@ -160,6 +160,7 @@ def create_qlr(filename, fileqlr="", cmapname=None):
                 items += f"""<item color="{item["color"]}" label="{item["label"]}" value="{item["value"]}" alpha="{item["alpha"]}"/>\n"""
         # Vector
         elif ext == "shp":
+            cmapname = cmapname if cmapname else GetTag(filename, "type")
             geomtype = GetGeomTypeName(filename)
             filetpl = pkg_resources.resource_filename(__name__, f"data/{geomtype}.qlr")
             metadata = {"type": cmapname}
