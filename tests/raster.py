@@ -30,9 +30,9 @@ from module_qlr import create_qlr
 if __name__ == "__main__":
 
     workdir, _ = os.path.split(__file__)
-    filename = f"{workdir}/WD_RAIN3229.tif"
+    filename = f"{workdir}/WD_RAIN1228.tif"
 
-    t = GetTag(filename, "xxx")
+    t = GetTag(filename, "type")
     print(t)
-    #create_qlr( filename)
+    create_qlr(filename)
     print("done!")

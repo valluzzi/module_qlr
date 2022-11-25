@@ -114,7 +114,8 @@ def create_qlr(filename, fileqlr="", cmapname=None):
         ext = justext(filename).lower()
 
         metadata = GetMetaData(filename)
-        metadata = metadata if metadata else {}
+        metadata = metadata["metadata"] if metadata and "metadata" in metadata else {}
+
 
         # Redefine sand, silt, clay cmap
         if ext == "tif":
@@ -122,6 +123,7 @@ def create_qlr(filename, fileqlr="", cmapname=None):
             if "type" not in metadata:
                 metadata["type"] = "viridis"
 
+            print(metadata)
             cmapname = cmapname if cmapname else metadata["type"]
 
             filetpl = pkg_resources.resource_filename(__name__, "data/raster.qlr")
@@ -129,6 +131,7 @@ def create_qlr(filename, fileqlr="", cmapname=None):
                 metadata = {"um": "m", "type": "dtm"}
                 classes = compute_depth_scale(filename, n_classes=8, cmapname="viridis")
             elif cmapname == "waterdepth":  # water_depth
+                print("here we are!!!")
                 metadata = {"um": "m", "type": "waterdepth"}
                 classes = [
                     {"color": "#431be9", "label": 0.0, "value": 0, "alpha": 255},
