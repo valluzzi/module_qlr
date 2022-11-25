@@ -33,7 +33,7 @@ import matplotlib.cm
 import numpy as np
 from osgeo import ogr
 from .filesystem import juststem, justfname, forceext, justext
-from gdal2numpy import GDAL2Numpy, GetMetaData, GetSpatialRef, GetExtent, GetMinMax, GetTag
+from gdal2numpy import GDAL2Numpy, GetMetaData, GetSpatialRef, GetExtent, GetMinMax
 
 def GetGeomTypeName(filename):
     """
