@@ -114,6 +114,9 @@ def create_qlr(filename, fileqlr="", cmapname=None):
         ext = justext(filename).lower()
 
         metadata = GetMetaData(filename)
+        metadata = metadata if metadata else {}
+        print(filename, metadata)
+        print("================================")
 
         # Redefine sand, silt, clay cmap
         if ext == "tif":
