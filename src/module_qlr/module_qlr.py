@@ -35,6 +35,7 @@ from osgeo import ogr
 from .filesystem import juststem, justfname, forceext, justext
 from gdal2numpy import GDAL2Numpy, GetMetaData, GetSpatialRef, GetExtent, GetMinMax
 
+
 def GetGeomTypeName(filename):
     """
     GetType
@@ -117,7 +118,7 @@ def create_qlr(filename, fileqlr="", cmapname=None):
         # Redefine sand, silt, clay cmap
         if ext == "tif":
             # assert that "type" is a valid key
-            if not "type" in metadata:
+            if "type" not in metadata:
                 metadata["type"] = "raster"
 
             cmapname = cmapname if cmapname else metadata["type"]
@@ -127,13 +128,13 @@ def create_qlr(filename, fileqlr="", cmapname=None):
                 metadata = {"um": "m", "type": "dtm"}
                 classes = compute_depth_scale(filename, n_classes=8, cmapname="viridis")
             elif cmapname == "waterdepth":  # water_depth
-                metadata = {"um": "m", "type": "waterdepth"}
+
                 classes = [
-                    {"color": "#431be9", "label": 0.0,  "value": 0,    "alpha": 255},
+                    {"color": "#431be9", "label": 0.0, "value": 0, "alpha": 255},
                     {"color": "#3254de", "label": 0.75, "value": 0.75, "alpha": 255},
-                    {"color": "#218dd3", "label": 1.5,  "value": 1.5,  "alpha": 255},
+                    {"color": "#218dd3", "label": 1.5, "value": 1.5, "alpha": 255},
                     {"color": "#10c6c8", "label": 2.25, "value": 2.25, "alpha": 255},
-                    {"color": "#00ffbd", "label": 3.0,  "value": 3.0,  "alpha": 255},
+                    {"color": "#00ffbd", "label": 3.0, "value": 3.0, "alpha": 255},
                 ]
             elif cmapname == "sand":  # sabbia
                 metadata = {"um": "%", "type": "sand"}
@@ -167,7 +168,7 @@ def create_qlr(filename, fileqlr="", cmapname=None):
         elif ext == "shp":
 
             # assert that "type" is a valid key
-            if not "type" in metadata:
+            if "type" not in metadata:
                 metadata["type"] = "Polygon"
 
             cmapname = cmapname if cmapname else metadata["type"]
