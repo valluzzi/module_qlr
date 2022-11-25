@@ -23,6 +23,7 @@
 # Created:
 # -------------------------------------------------------------------------------
 import os
+from gdal2numpy import SetTag
 from module_qlr import create_qlr
 
 
@@ -30,12 +31,8 @@ if __name__ == "__main__":
 
     workdir, _ = os.path.split(__file__)
     filename = f"{workdir}/infiltration_rate.shp"
+    SetTag(filename, "type", "infiltration_rate")
     create_qlr(filename, cmapname="infiltration_rate")
-    filename = f"{workdir}/streams.shp"
-    create_qlr(filename, cmapname="streams")
-    filename = f"{workdir}/pourpoints.shp"
-    create_qlr(filename)
-    filename = f"{workdir}/watersheds.labels.shp"
-    create_qlr(filename, cmapname="watersheds")
+
 
     print("done!")

@@ -116,6 +116,9 @@ def create_qlr(filename, fileqlr="", cmapname=None):
 
         # Redefine sand, silt, clay cmap
         if ext == "tif":
+            # assert that "type" is a valid key
+            if not "type" in metadata:
+                metadata["type"] = "raster"
 
             cmapname = cmapname if cmapname else metadata["type"]
 
@@ -162,6 +165,10 @@ def create_qlr(filename, fileqlr="", cmapname=None):
                 items += f"""<item color="{item["color"]}" label="{item["label"]}" value="{item["value"]}" alpha="{item["alpha"]}"/>\n"""
         # Vector
         elif ext == "shp":
+
+            # assert that "type" is a valid key
+            if not "type" in metadata:
+                metadata["type"] = "Polygon"
 
             cmapname = cmapname if cmapname else metadata["type"]
             geomtype = GetGeomTypeName(filename)
