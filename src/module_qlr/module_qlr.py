@@ -128,7 +128,7 @@ def create_qlr(filename, fileqlr="", cmapname=None):
                 metadata = {"um": "m", "type": "dtm"}
                 classes = compute_depth_scale(filename, n_classes=8, cmapname="viridis")
             elif cmapname == "waterdepth":  # water_depth
-
+                metadata = {"um": "m", "type": "waterdepth"}
                 classes = [
                     {"color": "#431be9", "label": 0.0, "value": 0, "alpha": 255},
                     {"color": "#3254de", "label": 0.75, "value": 0.75, "alpha": 255},
