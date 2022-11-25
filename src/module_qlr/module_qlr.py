@@ -122,7 +122,7 @@ def create_qlr(filename, fileqlr="", cmapname=None):
         if ext == "tif":
             # assert that "type" is a valid key
             if "type" not in metadata:
-                metadata["type"] = "raster"
+                metadata["type"] = "viridis"
 
             cmapname = cmapname if cmapname else metadata["type"]
 
