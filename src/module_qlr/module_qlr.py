@@ -127,7 +127,7 @@ def create_qlr(filename, fileqlr="", cmapname=None):
 
             filetpl = pkg_resources.resource_filename(__name__, "data/raster.qlr")
             if cmapname == "dtm":  # dtm
-                metadata = {"um": "m", "type": "dtm"}
+                metadata = metadata.update({"um": "m", "type": "dtm"})
                 classes = compute_depth_scale(filename, n_classes=8, cmapname="viridis")
             elif cmapname == "waterdepth":  # water_depth
                 metadata = {"um": "m", "type": "waterdepth"}
