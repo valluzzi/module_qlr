@@ -197,8 +197,9 @@ def create_qlr(filename, fileqlr="", cmapname=None):
             return None
 
         # Metadata in customproperties
-        for key in metadata:
-            customproperties += f"""\t\t<property key="{key}" value="{metadata[key]}"/>\n"""
+        if "metadata" in metadata:
+            for key in metadata["metadata"]:
+                customproperties += f"""\t\t<property key="{key}" value="{metadata[key]}"/>\n"""
 
         params = {
             "id": juststem(filename) + datetime.now().strftime("_%Y%m%d%H%M%S"),
