@@ -127,10 +127,10 @@ def create_qlr(filename, fileqlr="", cmapname=None):
 
             filetpl = pkg_resources.resource_filename(__name__, "data/raster.qlr")
             if cmapname == "dtm":  # dtm
-                metadata = metadata.update({"um": "m", "type": "dtm"})
+                metadata.update({"um": "m", "type": "dtm"})
                 classes = compute_depth_scale(filename, n_classes=8, cmapname="viridis")
             elif cmapname == "waterdepth":  # water_depth
-                metadata = {"um": "m", "type": "waterdepth"}
+                metadata.update({"um": "m", "type": "waterdepth"})
                 classes = [
                     {"color": "#431be9", "label": 0.0, "value": 0, "alpha": 255},
                     {"color": "#3254de", "label": 0.75, "value": 0.75, "alpha": 255},
@@ -139,16 +139,16 @@ def create_qlr(filename, fileqlr="", cmapname=None):
                     {"color": "#00ffbd", "label": 3.0, "value": 3.0, "alpha": 255},
                 ]
             elif cmapname == "sand":  # sabbia
-                metadata = {"um": "%", "type": "sand"}
+                metadata.update({"um": "%", "type": "sand"})
                 classes = compute_depth_scale(filename, n_classes=8, cmapname="copper")
             elif cmapname == "clay":  # argilla
-                metadata = {"um": "%", "type": "clay"}
+                metadata.update({"um": "%", "type": "clay"})
                 classes = compute_depth_scale(filename, n_classes=8, cmapname="gist_heat")
             elif cmapname == "silt":  # limo
-                metadata = {"um": "%", "type": "silt"}
+                metadata.update({"um": "%", "type": "silt"})
                 classes = compute_depth_scale(filename, n_classes=8, cmapname="bone")
             elif cmapname == "infiltration_rate":  # landuse
-                metadata = {"type": "landuse"}
+                metadata.update({"type": "landuse"})
                 classes = compute_depth_scale(filename, n_classes=8, cmapname="bone")
             else:
                 # Generic GTiff

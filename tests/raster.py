@@ -30,7 +30,7 @@ from module_qlr import create_qlr
 if __name__ == "__main__":
 
     workdir, _ = os.path.split(__file__)
-    filename = f"{workdir}/WD_RAIN1228.tif"
+    filename = f"{workdir}/WD_RAIN1133.tif"
 
     t = GetTag(filename, "type")
     print(t)
