@@ -114,7 +114,7 @@ def create_qlr(filename, fileqlr="", cmapname=None):
         ext = justext(filename).lower()
 
         metadata = GetMetaData(filename)
-        metadata = metadata["metadata"] if metadata and "metadata" in metadata else {"metadata": {}}
+        metadata = metadata["metadata"] if metadata and "metadata" in metadata else {}
 
 
         # Redefine sand, silt, clay cmap
@@ -130,7 +130,6 @@ def create_qlr(filename, fileqlr="", cmapname=None):
                 metadata = {"um": "m", "type": "dtm"}
                 classes = compute_depth_scale(filename, n_classes=8, cmapname="viridis")
             elif cmapname == "waterdepth":  # water_depth
-                print("here we are!!!")
                 metadata = {"um": "m", "type": "waterdepth"}
                 classes = [
                     {"color": "#431be9", "label": 0.0, "value": 0, "alpha": 255},
@@ -197,9 +196,8 @@ def create_qlr(filename, fileqlr="", cmapname=None):
             return None
 
         # Metadata in customproperties
-        if "metadata" in metadata:
-            for key in metadata["metadata"]:
-                customproperties += f"""\t\t<property key="{key}" value="{metadata[key]}"/>\n"""
+        for key in metadata:
+            customproperties += f"""\t\t<property key="{key}" value="{metadata[key]}"/>\n"""
 
         params = {
             "id": juststem(filename) + datetime.now().strftime("_%Y%m%d%H%M%S"),
