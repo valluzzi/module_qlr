@@ -30,9 +30,9 @@ from module_qlr import create_qlr
 if __name__ == "__main__":
 
     workdir, _ = os.path.split(__file__)
-    filename = f"{workdir}/infiltration_rate.shp"
-    SetTag(filename, "type", "infiltration_rate")
-    create_qlr(filename, cmapname="infiltration_rate")
+    filename = f"{workdir}/barrier.shp"
+    #SetTag(filename, "type", "infiltration_rate")
+    create_qlr(filename)
 
 
     print("done!")
