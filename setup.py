@@ -1,6 +1,6 @@
 import setuptools
 
-VERSION = "0.0.28"
+VERSION = "0.0.29"
 
 PACKAGE_NAME = "module_qlr"
 AUTHOR = "Valerio Luzzi"

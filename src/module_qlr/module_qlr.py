@@ -180,15 +180,20 @@ def create_qlr(filename, fileqlr="", cmapname=None):
             elif cmapname == "buildings":
                 fill_color = "#888888"
             elif cmapname == "bluespots":
+                metadata.update({"um": "m³"})
                 fill_color = "#358ab8"
             elif cmapname == "watersheds":
+                metadata.update({"um": "m³"})
                 fill_color = "#cae1e9"
             elif cmapname == "streams":
+                metadata.update({"um": "m³"})
                 fill_color = "#127db9"
             elif cmapname == "barrier":
+                metadata.update({"um": "m"})
                 filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
                 fill_color = "#127db9"
             elif cmapname == "storagetank":
+                metadata.update({"um": "m³"})
                 filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
                 fill_color = "#127db9"
         else:
