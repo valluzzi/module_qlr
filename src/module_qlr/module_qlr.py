@@ -152,18 +152,18 @@ def create_qlr(filename, fileqlr="", cmapname=None):
                 metadata.update({"um": "mm", "type": "rain"})
                 classes = [
                     {"color": "#c2fbfa", "label": 0.25, "value": 0.25, "alpha": 255},
-                    {"color": "#9df9f6", "label": 1.0,"value": 1.0, "alpha": 255},
+                    {"color": "#9df9f6", "label": 1.0, "value": 1.0, "alpha": 255},
                     {"color": "#87a9fd", "label": 2.0, "value": 2.0, "alpha": 255},
-                    {"color": "#7b95f9", "label": 4.0,"value": 4.0, "alpha": 255},
+                    {"color": "#7b95f9", "label": 4.0, "value": 4.0, "alpha": 255},
                     {"color": "#3496fe", "label": 6.0, "value": 6.0, "alpha": 255},
                     {"color": "#3586dd", "label": 10.0, "value": 10.0, "alpha": 255},
-                    {"color": "#35ac9f", "label": 15.0,"value": 15.0, "alpha": 255},
+                    {"color": "#35ac9f", "label": 15.0, "value": 15.0, "alpha": 255},
                     {"color": "#35d14d", "label": 20.0, "value": 20.0, "alpha": 255},
                     {"color": "#beff35", "label": 30.0, "value": 30.0, "alpha": 255},
-                    {"color": "#e1ff5d", "label": 50.0,"value": 50.0, "alpha": 255},
+                    {"color": "#e1ff5d", "label": 50.0, "value": 50.0, "alpha": 255},
                     {"color": "#ffbd35", "label": 70.0, "value": 70.0, "alpha": 255},
                     {"color": "#ff8134", "label": 100.0, "value": 100.0, "alpha": 255},
-                    {"color": "#fd6335", "label": 150.0,"value":  150.0, "alpha": 255},
+                    {"color": "#fd6335", "label": 150.0, "value": 150.0, "alpha": 255},
                     {"color": "#fc4335", "label": 200.0, "value": 200.0, "alpha": 255},
                 ]
             else:
@@ -189,6 +189,7 @@ def create_qlr(filename, fileqlr="", cmapname=None):
             if "type" not in metadata:
                 metadata["type"] = cmapname
             cmapname = cmapname if cmapname else metadata["type"]
+            fieldname = cmapname
 
             geomtype = GetGeomTypeName(filename)
             filetpl = pkg_resources.resource_filename(__name__, f"data/{geomtype}.qlr")
@@ -218,6 +219,7 @@ def create_qlr(filename, fileqlr="", cmapname=None):
                 metadata.update({"um": "mm"})
                 filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
                 fill_color = "#0000ff"
+                fieldname = "rain"  #graduate field attribute
         else:
             return None
 
@@ -246,7 +248,8 @@ def create_qlr(filename, fileqlr="", cmapname=None):
             "maxValue": maxValue,
             "itemList": items,
             "customproperties": customproperties,
-            "fill_color": fill_color
+            "fill_color": fill_color,
+            "fieldname": fieldname
         }
 
         # read the template .qlr

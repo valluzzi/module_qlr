@@ -78,7 +78,7 @@
           <end></end>
         </fixedRange>
       </temporal>
-      <renderer-v2 forceraster="0" enableorderby="0" symbollevels="0" attr="v" graduatedMethod="GraduatedColor" type="graduatedSymbol">
+      <renderer-v2 forceraster="0" enableorderby="0" symbollevels="0" attr="{{fieldname}}" graduatedMethod="GraduatedColor" type="graduatedSymbol">
         <ranges>
           <range lower="0.0" upper="0.25" render="true" symbol="0" label="0 - 0,25"/>
           <range lower="0.25" upper="1.0" render="true" symbol="1" label="0,25 - 1"/>
