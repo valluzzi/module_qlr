@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: module_qlr
+Version: 0.0.32
+Summary: Create a qlr file definition
+Home-page: https://github.com/valluzzi/module_qlr.git
+Author: Valerio Luzzi
+Author-email: valerio.luzzi@gecosistema.com
+License: UNKNOWN
+Description: Create a qlr file definition
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
