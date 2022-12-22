@@ -122,6 +122,7 @@ def create_qlr(filename, fileqlr="", cmapname=None):
             if "type" not in metadata:
                 metadata["type"] = "viridis"
             cmapname = cmapname if cmapname else metadata["type"]
+            fieldname = cmapname
 
             filetpl = pkg_resources.resource_filename(__name__, "data/raster.qlr")
             if cmapname == "dtm":  # dtm
