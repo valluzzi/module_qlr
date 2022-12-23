@@ -216,6 +216,10 @@ def create_qlr(filename, fileqlr="", cmapname=None):
                 metadata.update({"um": "m³"})
                 filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
                 fill_color = "#127db9"
+            elif cmapname == "riverevent":
+                metadata.update({"um": "m³"})
+                filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
+                fill_color = "#ff7db9"
             elif cmapname == "rain":
                 metadata.update({"um": "mm"})
                 filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
