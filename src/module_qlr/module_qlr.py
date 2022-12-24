@@ -149,7 +149,7 @@ def create_qlr(filename, fileqlr="", cmapname=None):
             elif cmapname == "infiltration_rate":  # landuse
                 metadata.update({"type": "landuse"})
                 classes = compute_depth_scale(filename, n_classes=8, cmapname="bone")
-            elif cmapname == "rain":  # rain
+            elif cmapname in ("rain", "rainfall"):  # rain
                 metadata.update({"um": "mm", "type": "rain"})
                 classes = [
                     {"color": "#c2fbfa", "label": 0.25, "value": 0.25, "alpha": 255},
@@ -220,7 +220,7 @@ def create_qlr(filename, fileqlr="", cmapname=None):
                 metadata.update({"um": "m³"})
                 filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
                 fill_color = "#ff7db9"
-            elif cmapname == "rain":
+            elif cmapname in ("rain", "rainfall"):
                 metadata.update({"um": "mm"})
                 filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
                 fill_color = "#0000ff"
