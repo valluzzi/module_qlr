@@ -92,11 +92,25 @@ def compute_depth_scale(filepath, n_classes=7, cmapname="viridis"):
         colors = get_colors(cmapname, n_classes)
         for value, color in zip(values[:-1], colors):
             classes.append({"value": value, "label": f'{value}', "alpha": 255, "color": color})
-
     return classes
 
+def compute_graduate_legend(n_classes=7, cmapname="viridis"):
+    """
+    compute_graduate_legend for ESRI_ShapeFile
+    """
+    colors = get_colors(cmapname, n_classes)
+    """
+    <ranges>
+      <range symbol="0" label="0 - 20" lower="0.000000000000000" upper="20.000000000000000" render="true"/>
+      <range symbol="1" label="20 - 40" lower="20.000000000000000" upper="40.000000000000000" render="true"/>
+      <range symbol="2" label="40 - 60" lower="40.000000000000000" upper="60.000000000000000" render="true"/>
+      <range symbol="3" label="60 - 80" lower="60.000000000000000" upper="80.000000000000000" render="true"/>
+      <range symbol="4" label="80 - 100" lower="80.000000000000000" upper="100.000000000000000" render="true"/>
+    </ranges>
+    """
 
-def create_qlr(filename, fileqlr="", cmapname=None):
+
+def create_qlr(filename, fileqlr="", cmapname=None, fieldname=""):
     """
     create_qlr - from template
     """
@@ -190,13 +204,20 @@ def create_qlr(filename, fileqlr="", cmapname=None):
             if "type" not in metadata:
                 metadata["type"] = cmapname
             cmapname = cmapname if cmapname else metadata["type"]
-            fieldname = cmapname
+            fieldname = fieldname if fieldname else cmapname
 
             geomtype = GetGeomTypeName(filename)
             filetpl = pkg_resources.resource_filename(__name__, f"data/{geomtype}.qlr")
 
             if cmapname == "infiltration_rate":
                 filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
+                #fieldname = "PERM"
+            elif cmapname == "sand":
+                metadata.update({"um": "%"})
+                filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
+            elif cmapname == "clay":
+                metadata.update({"um": "%"})
+                filetpl = pkg_resources.resource_filename(__name__, f"data/sand.qlr")
             elif cmapname == "buildings":
                 fill_color = "#888888"
             elif cmapname == "bluespots":
@@ -212,17 +233,20 @@ def create_qlr(filename, fileqlr="", cmapname=None):
                 metadata.update({"um": "m"})
                 filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
                 fill_color = "#127db9"
+                fieldname = "height"
             elif cmapname == "storagetank":
                 metadata.update({"um": "m³"})
                 filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
                 fill_color = "#127db9"
+                #fieldname = "v"
             elif cmapname == "riverevent":
                 metadata.update({"um": "m³"})
                 filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
                 fill_color = "#ff7db9"
+                #fieldname = "v"
             elif cmapname in ("rain", "rainfall"):
                 metadata.update({"um": "mm"})
-                filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
+                filetpl = pkg_resources.resource_filename(__name__, f"data/rainfall.qlr")
                 fill_color = "#0000ff"
                 fieldname = "rain"  #graduate field attribute
         else:

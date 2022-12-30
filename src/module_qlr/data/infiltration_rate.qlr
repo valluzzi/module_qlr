@@ -95,7 +95,7 @@
           <end></end>
         </fixedRange>
       </temporal>
-      <renderer-v2 symbollevels="0" forceraster="0" graduatedMethod="GraduatedColor" type="graduatedSymbol" enableorderby="0" attr="PERM">
+      <renderer-v2 symbollevels="0" forceraster="0" graduatedMethod="GraduatedColor" type="graduatedSymbol" enableorderby="0" attr="{{fieldname}}">
         <ranges>
           <range upper="0.200000000000000" lower="0.000000000000000" label="0 - 0,2" symbol="0" render="true"/>
           <range upper="0.400000000000000" lower="0.200000000000000" label="0,2 - 0,4" symbol="1" render="true"/>
