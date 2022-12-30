@@ -1,36 +1,36 @@
 <!DOCTYPE qgis-layer-definition>
 <qlr>
-  <layer-tree-group name="" expanded="1" checked="Qt::Checked">
+  <layer-tree-group expanded="1" name="" checked="Qt::Checked">
     <customproperties/>
-    <layer-tree-layer source="{{source}}" name="{{layername}}" legend_exp="" legend_split_behavior="0" providerKey="ogr" expanded="1" id="{{id}}" patch_size="-1,-1" checked="Qt::Checked">
+    <layer-tree-layer expanded="0" name="rain-event" checked="Qt::Checked" patch_size="-1,-1" legend_split_behavior="0" id="rain_event_43d249c0_cbb2_45d0_99d2_5f3d21fa32fa" source="../../../../safer-map/public/rain-event.shp" legend_exp="" providerKey="ogr">
       <customproperties/>
     </layer-tree-layer>
   </layer-tree-group>
   <maplayers>
-    <maplayer type="vector" readOnly="0" maxScale="0" labelsEnabled="0" simplifyMaxScale="1" minScale="100000000" wkbType="MultiPolygon" refreshOnNotifyEnabled="0" hasScaleBasedVisibilityFlag="0" simplifyDrawingHints="1" simplifyAlgorithm="0" styleCategories="AllStyleCategories" geometry="Polygon" simplifyDrawingTol="1" simplifyLocal="1" refreshOnNotifyMessage="" autoRefreshTime="0" autoRefreshEnabled="0">
+    <maplayer simplifyDrawingTol="1" styleCategories="AllStyleCategories" simplifyDrawingHints="1" simplifyLocal="1" minScale="100000000" autoRefreshTime="0" readOnly="0" maxScale="0" autoRefreshEnabled="0" refreshOnNotifyEnabled="0" simplifyAlgorithm="0" geometry="Polygon" refreshOnNotifyMessage="" labelsEnabled="0" hasScaleBasedVisibilityFlag="0" type="vector" simplifyMaxScale="1" wkbType="MultiPolygon">
       <extent>
-        <xmin>{{xmin}}</xmin>
-        <ymin>{{ymin}}</ymin>
-        <xmax>{{xmax}}</xmax>
-        <ymax>{{ymax}}</ymax>
+        <xmin>784643.88032794091850519</xmin>
+        <ymin>4886897.95101737510412931</ymin>
+        <xmax>785582.10372425708919764</xmax>
+        <ymax>4887397.52574894484132528</ymax>
       </extent>
-      <id>{{id}}</id>
-      <datasource>{{source}}</datasource>
+      <id>rain_event_43d249c0_cbb2_45d0_99d2_5f3d21fa32fa</id>
+      <datasource>../../../../safer-map/public/rain-event.shp</datasource>
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>{{layername}}</layername>
+      <layername>rain-event</layername>
       <srs>
         <spatialrefsys>
-          <wkt>{{wkt}}</wkt>
-          <proj4>{{proj4}}</proj4>
-          <srsid>{{srsid}}</srsid>
-          <srid>{{srid}}</srid>
-          <authid>{{authid}}</authid>
-          <description>{{description}}</description>
-          <projectionacronym>{{merc}}</projectionacronym>
-          <ellipsoidacronym>{{ellipsoidacronym}}</ellipsoidacronym>
-          <geographicflag>{{geographicflag}}</geographicflag>
+          <wkt>PROJCRS["WGS 84 / UTM zone 32N",BASEGEOGCRS["WGS 84",DATUM["World Geodetic System 1984",ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4326]],CONVERSION["UTM zone 32N",METHOD["Transverse Mercator",ID["EPSG",9807]],PARAMETER["Latitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8801]],PARAMETER["Longitude of natural origin",9,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8802]],PARAMETER["Scale factor at natural origin",0.9996,SCALEUNIT["unity",1],ID["EPSG",8805]],PARAMETER["False easting",500000,LENGTHUNIT["metre",1],ID["EPSG",8806]],PARAMETER["False northing",0,LENGTHUNIT["metre",1],ID["EPSG",8807]]],CS[Cartesian,2],AXIS["(E)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["(N)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["unknown"],AREA["World - N hemisphere - 6°E to 12°E - by country"],BBOX[0,6,84,12]],ID["EPSG",32632]]</wkt>
+          <proj4>+proj=utm +zone=32 +datum=WGS84 +units=m +no_defs</proj4>
+          <srsid>3116</srsid>
+          <srid>32632</srid>
+          <authid>EPSG:32632</authid>
+          <description>WGS 84 / UTM zone 32N</description>
+          <projectionacronym>utm</projectionacronym>
+          <ellipsoidacronym>EPSG:7030</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
         </spatialrefsys>
       </srs>
       <resourceMetadata>
@@ -40,6 +40,15 @@
         <type>dataset</type>
         <title></title>
         <abstract></abstract>
+        <contact>
+          <name></name>
+          <organization></organization>
+          <position></position>
+          <voice></voice>
+          <fax></fax>
+          <email></email>
+          <role></role>
+        </contact>
         <links/>
         <fees></fees>
         <encoding></encoding>
@@ -56,9 +65,17 @@
             <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
-        <extent/>
+        <extent>
+          <spatial maxy="0" dimensions="2" minx="0" crs="" maxx="0" maxz="0" minz="0" miny="0"/>
+          <temporal>
+            <period>
+              <start></start>
+              <end></end>
+            </period>
+          </temporal>
+        </extent>
       </resourceMetadata>
-      <provider encoding="ISO-8859-1">ogr</provider>
+      <provider encoding="UTF-8">ogr</provider>
       <vectorjoins/>
       <layerDependencies/>
       <dataDependencies/>
@@ -72,28 +89,28 @@
         <Removable>1</Removable>
         <Searchable>1</Searchable>
       </flags>
-      <temporal enabled="0" endExpression="" durationField="" fixedDuration="0" mode="0" startExpression="" endField="" startField="" durationUnit="min" accumulate="0">
+      <temporal mode="0" durationField="" accumulate="0" enabled="0" endField="" endExpression="" startExpression="" startField="" fixedDuration="0" durationUnit="min">
         <fixedRange>
           <start></start>
           <end></end>
         </fixedRange>
       </temporal>
-      <renderer-v2 forceraster="0" enableorderby="0" symbollevels="0" attr="{{fieldname}}" graduatedMethod="GraduatedColor" type="graduatedSymbol">
+      <renderer-v2 forceraster="0" enableorderby="0" symbollevels="0" attr="v" graduatedMethod="GraduatedColor" type="graduatedSymbol">
         <ranges>
-          <range lower="0.0" upper="0.25" render="true" symbol="0" label="0 - 0,25"/>
-          <range lower="0.25" upper="1.0" render="true" symbol="1" label="0,25 - 1"/>
-          <range lower="1.0" upper="2.0" render="true" symbol="2" label="1 - 2"/>
-          <range lower="2.0" upper="4.0" render="true" symbol="3" label="2 - 4"/>
-          <range lower="4.0" upper="6.0" render="true" symbol="4" label="4 - 6"/>
-          <range lower="6.0" upper="10.0" render="true" symbol="5" label="6 - 10"/>
-          <range lower="10.0" upper="15.0" render="true" symbol="6" label="10 - 15"/>
-          <range lower="15.0" upper="20.0" render="true" symbol="7" label="15 - 20"/>
-          <range lower="20.0" upper="30.0" render="true" symbol="8" label="20 - 30"/>
-          <range lower="30.0" upper="50.0" render="true" symbol="9" label="60 - 50"/>
-          <range lower="50.0" upper="70.0" render="true" symbol="10" label="50 - 70"/>
-          <range lower="70.0" upper="100.0" render="true" symbol="11" label="70 - 100"/>
-          <range lower="100.0" upper="150.0" render="true" symbol="12" label="100 - 150"/>
-          <range lower="150.0" upper="200.0" render="true" symbol="13" label="150 - 200"/>
+          <range lower="0.000000000000000" upper="0.250000000000000" render="true" symbol="0" label="0 - 0,25"/>
+          <range lower="0.250000000000000" upper="1.000000000000000" render="true" symbol="1" label="0,25 - 1"/>
+          <range lower="1.000000000000000" upper="2.000000000000000" render="true" symbol="2" label="1 - 2"/>
+          <range lower="2.000000000000000" upper="4.000000000000000" render="true" symbol="3" label="2 - 4"/>
+          <range lower="4.000000000000000" upper="6.000000000000000" render="true" symbol="4" label="4 - 6"/>
+          <range lower="6.000000000000000" upper="10.000000000000000" render="true" symbol="5" label="0.0 - 0.0"/>
+          <range lower="10.000000000000000" upper="15.000000000000000" render="true" symbol="6" label="0.0 - 0.0"/>
+          <range lower="15.000000000000000" upper="20.000000000000000" render="true" symbol="7" label="0.0 - 0.0"/>
+          <range lower="20.000000000000000" upper="30.000000000000000" render="true" symbol="8" label="0.0 - 0.0"/>
+          <range lower="30.000000000000000" upper="50.000000000000000" render="true" symbol="9" label="0.0 - 0.0"/>
+          <range lower="50.000000000000000" upper="70.000000000000000" render="true" symbol="10" label="0.0 - 0.0"/>
+          <range lower="70.000000000000000" upper="100.000000000000000" render="true" symbol="11" label="0.0 - 0.0"/>
+          <range lower="100.000000000000000" upper="150.000000000000000" render="true" symbol="12" label="0.0 - 0.0"/>
+          <range lower="150.000000000000000" upper="200.000000000000000" render="true" symbol="13" label="0.0 - 0.0"/>
         </ranges>
         <symbols>
           <symbol name="0" force_rhr="0" type="fill" alpha="1" clip_to_extent="1">
@@ -448,35 +465,103 @@
         <sizescale/>
       </renderer-v2>
       <customproperties>
-{{customproperties}}
+        <property value="0" key="embeddedWidgets/count"/>
+        <property key="variableNames"/>
+        <property key="variableValues"/>
       </customproperties>
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
       <layerOpacity>1</layerOpacity>
-      <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
-        <activeChecks type="StringList">
-          <Option value="" type="QString"/>
-        </activeChecks>
-        <checkConfiguration/>
+      <SingleCategoryDiagramRenderer diagramType="Histogram" attributeLegend="1">
+        <DiagramCategory sizeType="MM" maxScaleDenominator="1e+08" barWidth="5" scaleDependency="Area" height="15" diagramOrientation="Up" minScaleDenominator="0" rotationOffset="270" sizeScale="3x:0,0,0,0,0,0" minimumSize="0" showAxis="1" scaleBasedVisibility="0" backgroundColor="#ffffff" penColor="#000000" labelPlacementMethod="XHeight" spacingUnitScale="3x:0,0,0,0,0,0" direction="0" opacity="1" enabled="0" lineSizeScale="3x:0,0,0,0,0,0" penWidth="0" spacingUnit="MM" width="15" backgroundAlpha="255" penAlpha="255" lineSizeType="MM" spacing="5">
+          <fontProperties description=".AppleSystemUIFont,13,-1,5,50,0,0,0,0,0" style=""/>
+          <axisSymbol>
+            <symbol name="" force_rhr="0" type="line" alpha="1" clip_to_extent="1">
+              <layer class="SimpleLine" enabled="1" locked="0" pass="0">
+                <prop v="0" k="align_dash_pattern"/>
+                <prop v="square" k="capstyle"/>
+                <prop v="5;2" k="customdash"/>
+                <prop v="3x:0,0,0,0,0,0" k="customdash_map_unit_scale"/>
+                <prop v="MM" k="customdash_unit"/>
+                <prop v="0" k="dash_pattern_offset"/>
+                <prop v="3x:0,0,0,0,0,0" k="dash_pattern_offset_map_unit_scale"/>
+                <prop v="MM" k="dash_pattern_offset_unit"/>
+                <prop v="0" k="draw_inside_polygon"/>
+                <prop v="bevel" k="joinstyle"/>
+                <prop v="35,35,35,255" k="line_color"/>
+                <prop v="solid" k="line_style"/>
+                <prop v="0.26" k="line_width"/>
+                <prop v="MM" k="line_width_unit"/>
+                <prop v="0" k="offset"/>
+                <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+                <prop v="MM" k="offset_unit"/>
+                <prop v="0" k="ring_filter"/>
+                <prop v="0" k="tweak_dash_pattern_on_corners"/>
+                <prop v="0" k="use_custom_dash"/>
+                <prop v="3x:0,0,0,0,0,0" k="width_map_unit_scale"/>
+                <data_defined_properties>
+                  <Option type="Map">
+                    <Option value="" name="name" type="QString"/>
+                    <Option name="properties"/>
+                    <Option value="collection" name="type" type="QString"/>
+                  </Option>
+                </data_defined_properties>
+              </layer>
+            </symbol>
+          </axisSymbol>
+        </DiagramCategory>
+      </SingleCategoryDiagramRenderer>
+      <DiagramLayerSettings linePlacementFlags="18" zIndex="0" dist="0" priority="0" obstacle="0" showAll="1" placement="1">
+        <properties>
+          <Option type="Map">
+            <Option value="" name="name" type="QString"/>
+            <Option name="properties"/>
+            <Option value="collection" name="type" type="QString"/>
+          </Option>
+        </properties>
+      </DiagramLayerSettings>
+      <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
+        <activeChecks/>
+        <checkConfiguration type="Map">
+          <Option name="QgsGeometryGapCheck" type="Map">
+            <Option value="0" name="allowedGapsBuffer" type="double"/>
+            <Option value="false" name="allowedGapsEnabled" type="bool"/>
+            <Option value="" name="allowedGapsLayer" type="QString"/>
+          </Option>
+        </checkConfiguration>
       </geometryOptions>
       <legend type="default-vector"/>
       <referencedLayers/>
       <fieldConfiguration>
+        <field name="v" configurationFlags="None">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
       </fieldConfiguration>
       <aliases>
+        <alias field="v" index="0" name=""/>
       </aliases>
       <defaults>
+        <default field="v" expression="" applyOnUpdate="0"/>
       </defaults>
       <constraints>
+        <constraint field="v" unique_strength="0" notnull_strength="0" exp_strength="0" constraints="0"/>
       </constraints>
       <constraintExpressions>
+        <constraint exp="" field="v" desc=""/>
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
         <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
       </attributeactions>
-      <attributetableconfig sortExpression="" sortOrder="0" actionWidgetStyle="dropDown">
-        <columns/>
+      <attributetableconfig actionWidgetStyle="dropDown" sortOrder="0" sortExpression="">
+        <columns>
+          <column name="v" hidden="0" width="-1" type="field"/>
+          <column hidden="1" width="-1" type="actions"/>
+        </columns>
       </attributetableconfig>
       <conditionalstyles>
         <rowstyles/>
@@ -487,14 +572,33 @@
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
       <editforminitfilepath></editforminitfilepath>
-      <editforminitcode><![CDATA[]]></editforminitcode>
+      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
+"""
+I moduli QGIS possono avere una funzione Python che può essere chiamata quando viene aperto un modulo.
+
+Usa questa funzione per aggiungere logica extra ai tuoi moduli.
+
+Inserisci il nome della funzione nel campo "Funzione Python di avvio".
+
+Segue un esempio:
+"""
+from qgis.PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
-      <editable/>
-      <labelOnTop/>
+      <editable>
+        <field name="v" editable="1"/>
+      </editable>
+      <labelOnTop>
+        <field labelOnTop="0" name="v"/>
+      </labelOnTop>
       <dataDefinedFieldProperties/>
       <widgets/>
-      <previewExpression></previewExpression>
+      <previewExpression>"v"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
   </maplayers>
