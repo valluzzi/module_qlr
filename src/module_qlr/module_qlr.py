@@ -263,7 +263,7 @@ def create_qlr(filename, fileqlr="", cmapname=None, fieldname=""):
 
             if cmapname == "infiltration_rate":
                 metadata.update({"um": ""})
-                symbols = compute_graduate_scale(0, 1.0, n_classes=8, cmapname="greens")
+                symbols = compute_graduate_scale(0, 1.0, n_classes=8, cmapname="Greens_r")
                 filetpl = pkg_resources.resource_filename(__name__, f"data/PolygonGraduate.qlr")
                 #filetpl = pkg_resources.resource_filename(__name__, f"data/infiltration_rate.qlr")
                 #fieldname = "PERM"
