@@ -170,7 +170,7 @@ def compute_graduate_scale(minValue, maxValue, n_classes=7, cmapname="viridis"):
     </symbols>
     """
     colors = get_colors(cmapname, n_classes)
-    symbols = [SimpleFillSymbol(j, colors[j]) for j in range(colors)]
+    symbols = [SimpleFillSymbol(j, colors[j]) for j in range(len(colors))]
     classes = EqualIntervals(minValue, maxValue, n_classes)
     ranges = [f"""<range symbol="{j}" label="{classes[j]} - {classes[j+1]}" lower="{classes[j]}" upper="{classes[j+1]}" render="true"/>""" for j in range(n_classes)]
     ranges = "\n\t".join(ranges)
