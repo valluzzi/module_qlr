@@ -1,1 +1,1 @@
-from .module_qlr import create_qlr
+from .module_qlr import create_qlr, EqualIntervals

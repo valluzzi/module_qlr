@@ -24,7 +24,7 @@
 # -------------------------------------------------------------------------------
 import os
 from gdal2numpy import SetTag
-from module_qlr import create_qlr
+from module_qlr import create_qlr, EqualIntervals
 
 
 if __name__ == "__main__":
@@ -32,7 +32,9 @@ if __name__ == "__main__":
     workdir, _ = os.path.split(__file__)
     filename = f"{workdir}/barrier.shp"
     #SetTag(filename, "type", "infiltration_rate")
-    create_qlr(filename)
+    #create_qlr(filename)
+
+    EqualIntervals(0, 10, 5)
 
 
     print("done!")

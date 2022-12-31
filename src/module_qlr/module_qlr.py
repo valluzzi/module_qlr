@@ -32,7 +32,7 @@ import matplotlib
 import matplotlib.cm
 import numpy as np
 from osgeo import ogr
-from .filesystem import juststem, justfname, forceext, justext
+from .filesystem import juststem, justfname, forceext, justext, israster, isshape
 from gdal2numpy import GDAL2Numpy, GetMetaData, GetSpatialRef, GetExtent, GetMinMax
 
 
@@ -61,7 +61,7 @@ def get_colors(cmapname, n_classes):
     return []
 
 
-def compute_depth_scale(filepath, n_classes=7, cmapname="viridis"):
+def compute_depth_scale(filename, n_classes=7, cmapname="viridis"):
     """
     compute_depth_scale - SubOptimal algo for Natural-Breaks classes
     """
@@ -69,8 +69,8 @@ def compute_depth_scale(filepath, n_classes=7, cmapname="viridis"):
     # if n_classes == 7:
     #    colors = ["#440154", "#3a528b", "#20908d", "#5dc962", "#fde725", "#ffa500", "#ff0000"]
 
-    if os.path.isfile(filepath):
-        data, _, _ = GDAL2Numpy(filepath)
+    if os.path.isfile(filename):
+        data, _, _ = GDAL2Numpy(filename)
         data[data < -1e10] = np.nan
         data = np.unique(data.ravel())  # ravel instead of flatten because flatten create a copy
         data = data[~np.isnan(data)]
@@ -94,11 +94,38 @@ def compute_depth_scale(filepath, n_classes=7, cmapname="viridis"):
             classes.append({"value": value, "label": f'{value}', "alpha": 255, "color": color})
     return classes
 
-def compute_graduate_legend(n_classes=7, cmapname="viridis"):
+def EqualIntervals(minValue, maxValue, n_classes):
     """
-    compute_graduate_legend for ESRI_ShapeFile
+    EqualIntervals
     """
-    colors = get_colors(cmapname, n_classes)
+    return np.linspace(minValue, maxValue, n_classes+1)
+    #for j in range(n_classes):
+    #    lower, upper = classes[j], classes[j+1]
+    #    ranges.append(f"""<range symbol="{j}" label="{lower} - {upper}" lower="{lower}" upper="{upper}" render="true"/>""")
+
+
+def SimpleFillSymbol(color="#ffffff", outline_color="#000000"):
+    return f"""<symbol name="0" force_rhr="0" alpha="1" type="fill" clip_to_extent="1">
+        <layer locked="0" pass="0" class="SimpleFill" enabled="1">
+          <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <prop k="color" v="{color}"/>
+          <prop k="joinstyle" v="bevel"/>
+          <prop k="offset" v="0,0"/>
+          <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="outline_color" v="{outline_color}"/>
+          <prop k="outline_style" v="solid"/>
+          <prop k="outline_width" v="0.26"/>
+          <prop k="outline_width_unit" v="MM"/>
+          <prop k="style" v="solid"/>
+        </layer>
+      </symbol>"""
+
+def compute_graduate_scale(minValue, maxValue, n_classes=7, cmapname="viridis"):
+    """
+    compute_graduate_scale for ESRI_ShapeFile <ranges...>/
+    """
+
     """
     <ranges>
       <range symbol="0" label="0 - 20" lower="0.000000000000000" upper="20.000000000000000" render="true"/>
@@ -107,7 +134,33 @@ def compute_graduate_legend(n_classes=7, cmapname="viridis"):
       <range symbol="3" label="60 - 80" lower="60.000000000000000" upper="80.000000000000000" render="true"/>
       <range symbol="4" label="80 - 100" lower="80.000000000000000" upper="100.000000000000000" render="true"/>
     </ranges>
+    
+    <symbols>
+      <symbol name="0" force_rhr="0" alpha="1" type="fill" clip_to_extent="1">
+        <layer locked="0" pass="0" class="SimpleFill" enabled="1">
+          <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <prop k="color" v="255,255,255,255"/>
+          <prop k="joinstyle" v="bevel"/>
+          <prop k="offset" v="0,0"/>
+          <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="outline_color" v="35,35,35,255"/>
+          <prop k="outline_style" v="solid"/>
+          <prop k="outline_width" v="0.26"/>
+          <prop k="outline_width_unit" v="MM"/>
+          <prop k="style" v="solid"/>
+        </layer>
+      </symbol>
+      ...
+    </symbols>
     """
+    colors = get_colors(cmapname, n_classes)
+    symbols = [SimpleFillSymbol(color) for color in colors]
+    classes = EqualIntervals(minValue, maxValue, n_classes)
+    ranges = [f"""<range symbol="{j}" label="{classes[j]} - {classes[j+1]}" lower="{classes[j]}" upper="{classes[j+1]}" render="true"/>""" for j in range(classes-1)]
+    ranges = "\n\t".join(ranges)
+    symbols = "\n\t".join(symbols)
+    return f"""<ranges>\n\t{ranges}</ranges>\n<symbols>{symbols}</symbols>\n"""
 
 
 def create_qlr(filename, fileqlr="", cmapname=None, fieldname=""):
@@ -118,20 +171,18 @@ def create_qlr(filename, fileqlr="", cmapname=None, fieldname=""):
     if os.path.isfile(filename):
         filetpl = ""
         fileqlr = fileqlr if fileqlr else forceext(filename, "qlr")
-        minValue, maxValue = GetMinMax(filename) if justext(filename) == "tif" else 0, 0
+        minValue, maxValue = GetMinMax(filename, fieldname)
 
         srs = GetSpatialRef(filename)
         minx, miny, maxx, maxy = GetExtent(filename)
-        items = ""
-        customproperties = ""
+        items, symbols, customproperties = "", "", ""
         fill_color = "#ffffff"
-        ext = justext(filename).lower()
 
         metadata = GetMetaData(filename)
         metadata = metadata["metadata"] if metadata and "metadata" in metadata else {}
 
         # Redefine sand, silt, clay cmap
-        if ext == "tif":
+        if israster(filename):
             # assert that "type" is a valid key
             if "type" not in metadata:
                 metadata["type"] = "viridis"
@@ -197,9 +248,10 @@ def create_qlr(filename, fileqlr="", cmapname=None, fieldname=""):
             # for all tif
             for item in classes:
                 items += f"""<item color="{item["color"]}" label="{item["label"]}" value="{item["value"]}" alpha="{item["alpha"]}"/>\n"""
+        #---------------------------------------------------------------------------------------------------------------
         # Vector
-        elif ext == "shp":
-
+        # ---------------------------------------------------------------------------------------------------------------
+        elif isshape(filename):
             # assert that "type" is a valid key
             if "type" not in metadata:
                 metadata["type"] = cmapname
@@ -210,14 +262,19 @@ def create_qlr(filename, fileqlr="", cmapname=None, fieldname=""):
             filetpl = pkg_resources.resource_filename(__name__, f"data/{geomtype}.qlr")
 
             if cmapname == "infiltration_rate":
-                filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
+                metadata.update({"um": ""})
+                symbols = compute_graduate_scale(0, 1.0, n_classes=8, cmapname="greens")
+                filetpl = pkg_resources.resource_filename(__name__, f"data/PolygonGraduate.qlr")
+                #filetpl = pkg_resources.resource_filename(__name__, f"data/infiltration_rate.qlr")
                 #fieldname = "PERM"
             elif cmapname == "sand":
                 metadata.update({"um": "%"})
-                filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
+                symbols = compute_graduate_scale(0, 100, n_classes=8, cmapname="copper")
+                filetpl = pkg_resources.resource_filename(__name__, f"data/PolygonGraduate.qlr")
             elif cmapname == "clay":
                 metadata.update({"um": "%"})
-                filetpl = pkg_resources.resource_filename(__name__, f"data/sand.qlr")
+                symbols = compute_graduate_scale(0, 100, n_classes=8, cmapname="copper")
+                filetpl = pkg_resources.resource_filename(__name__, f"data/PolygonGraduate.qlr")
             elif cmapname == "buildings":
                 fill_color = "#888888"
             elif cmapname == "bluespots":
@@ -276,6 +333,7 @@ def create_qlr(filename, fileqlr="", cmapname=None, fieldname=""):
             "minValue": minValue,
             "maxValue": maxValue,
             "itemList": items,
+            "symbols": symbols,
             "customproperties": customproperties,
             "fill_color": fill_color,
             "fieldname": fieldname
