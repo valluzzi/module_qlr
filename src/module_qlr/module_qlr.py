@@ -119,8 +119,8 @@ def EqualIntervals(minValue, maxValue, n_classes):
     return np.linspace(minValue, maxValue, n_classes+1)
 
 
-def SimpleFillSymbol(color="#ffffff", outline_color="#000000"):
-    return f"""<symbol name="0" force_rhr="0" alpha="1" type="fill" clip_to_extent="1">
+def SimpleFillSymbol(name=0, color="#ffffff", outline_color="#000000"):
+    return f"""<symbol name="{name}" force_rhr="0" alpha="1" type="fill" clip_to_extent="1">
         <layer locked="0" pass="0" class="SimpleFill" enabled="1">
           <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
           <prop k="color" v="{color}"/>
@@ -170,7 +170,7 @@ def compute_graduate_scale(minValue, maxValue, n_classes=7, cmapname="viridis"):
     </symbols>
     """
     colors = get_colors(cmapname, n_classes)
-    symbols = [SimpleFillSymbol(color) for color in colors]
+    symbols = [SimpleFillSymbol(j, colors[j]) for j in range(colors)]
     classes = EqualIntervals(minValue, maxValue, n_classes)
     ranges = [f"""<range symbol="{j}" label="{classes[j]} - {classes[j+1]}" lower="{classes[j]}" upper="{classes[j+1]}" render="true"/>""" for j in range(n_classes)]
     ranges = "\n\t".join(ranges)
