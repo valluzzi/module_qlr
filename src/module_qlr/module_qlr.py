@@ -32,7 +32,7 @@ import matplotlib
 import matplotlib.cm
 import numpy as np
 from osgeo import ogr
-from .filesystem import juststem, justfname, forceext, md5text, israster, isshape
+from .filesystem import juststem, justfname, forceext, israster, isshape
 from gdal2numpy import GDAL2Numpy, GetMetaData, GetSpatialRef, GetExtent, GetMinMax
 
 
@@ -330,8 +330,8 @@ def create_qlr(filename, fileqlr="", cmapname=None, fieldname=""):
         layername = juststem(filename)
 
         params = {
-            #"id": juststem(filename) + datetime.now().strftime("_%Y%m%d%H%M%S"),
-            "id":  f"{layername}_{md5text(filename)}",
+            "id": juststem(filename) + datetime.now().strftime("_%Y%m%d%H%M%S"),
+            #"id":  f"{layername}_{md5text(filename)}",
             "layername": layername,
             "source": justfname(filename),
             "xmin": minx,
