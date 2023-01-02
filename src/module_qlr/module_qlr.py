@@ -287,7 +287,7 @@ def create_qlr(filename, fileqlr="", cmapname=None, fieldname=""):
                 filetpl = pkg_resources.resource_filename(__name__, f"data/PolygonGraduate.qlr")
             elif cmapname == "clay":
                 metadata.update({"um": "%"})
-                symbols = compute_graduate_scale(0, 100, n_classes=8, cmapname="copper")
+                symbols = compute_graduate_scale(0, 100, n_classes=8, cmapname="gist_heat")
                 filetpl = pkg_resources.resource_filename(__name__, f"data/PolygonGraduate.qlr")
             elif cmapname == "buildings":
                 fill_color = "#888888"
