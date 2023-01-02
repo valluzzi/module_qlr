@@ -32,7 +32,7 @@ import matplotlib
 import matplotlib.cm
 import numpy as np
 from osgeo import ogr
-from .filesystem import juststem, justfname, forceext, justext, israster, isshape
+from .filesystem import juststem, justfname, forceext, md5text, israster, isshape
 from gdal2numpy import GDAL2Numpy, GetMetaData, GetSpatialRef, GetExtent, GetMinMax
 
 
@@ -278,8 +278,8 @@ def create_qlr(filename, fileqlr="", cmapname=None, fieldname=""):
             if cmapname == "infiltration_rate":
                 metadata.update({"um": ""})
                 symbols = compute_graduate_scale(0, 1.0, n_classes=8, cmapname="Greens_r")
-                filetpl = pkg_resources.resource_filename(__name__, f"data/PolygonGraduate.qlr")
-                #filetpl = pkg_resources.resource_filename(__name__, f"data/infiltration_rate.qlr")
+                #filetpl = pkg_resources.resource_filename(__name__, f"data/PolygonGraduate.qlr")
+                filetpl = pkg_resources.resource_filename(__name__, f"data/infiltration_rate.qlr")
                 #fieldname = "PERM"
             elif cmapname == "sand":
                 metadata.update({"um": "%"})
@@ -327,9 +327,12 @@ def create_qlr(filename, fileqlr="", cmapname=None, fieldname=""):
         for key in metadata:
             customproperties += f"""\t\t<property key="{key}" value="{metadata[key]}"/>\n"""
 
+        layername = juststem(filename)
+
         params = {
-            "id": juststem(filename) + datetime.now().strftime("_%Y%m%d%H%M%S"),
-            "layername": juststem(filename),
+            #"id": juststem(filename) + datetime.now().strftime("_%Y%m%d%H%M%S"),
+            "id":  f"{layername}_{md5text(filename)}",
+            "layername": layername,
             "source": justfname(filename),
             "xmin": minx,
             "ymin": miny,
