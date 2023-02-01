@@ -338,7 +338,7 @@ def create_qlr(filename, fileqlr="", cmapname=None, fieldname=""):
                 # metadata.update({"um": "$"})
                 filetpl = pkg_resources.resource_filename(__name__, f"data/damage.qlr")
                 fill_color = "#0000ff"
-                fieldname = "total_loss"  # graduate field attribute
+                #fieldname = "total_loss"  # graduate field attribute
         else:
             return None
 
