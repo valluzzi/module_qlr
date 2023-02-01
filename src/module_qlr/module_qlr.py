@@ -54,22 +54,29 @@ def get_colors(cmapname, n_classes):
     get_colors - get array of colors
     """
     scales = ['Accent', 'Accent_r', 'Blues', 'Blues_r', 'BrBG', 'BrBG_r', 'BuGn', 'BuGn_r', 'BuPu', 'BuPu_r', 'CMRmap',
-     'CMRmap_r', 'Dark2', 'Dark2_r', 'GnBu', 'GnBu_r', 'Greens', 'Greens_r', 'Greys', 'Greys_r', 'OrRd', 'OrRd_r',
-     'Oranges', 'Oranges_r', 'PRGn', 'PRGn_r', 'Paired', 'Paired_r', 'Pastel1', 'Pastel1_r', 'Pastel2', 'Pastel2_r',
-     'PiYG', 'PiYG_r', 'PuBu', 'PuBuGn', 'PuBuGn_r', 'PuBu_r', 'PuOr', 'PuOr_r', 'PuRd', 'PuRd_r', 'Purples',
-     'Purples_r', 'RdBu', 'RdBu_r', 'RdGy', 'RdGy_r', 'RdPu', 'RdPu_r', 'RdYlBu', 'RdYlBu_r', 'RdYlGn', 'RdYlGn_r',
-     'Reds', 'Reds_r', 'Set1', 'Set1_r', 'Set2', 'Set2_r', 'Set3', 'Set3_r', 'Spectral', 'Spectral_r', 'Wistia',
-     'Wistia_r', 'YlGn', 'YlGnBu', 'YlGnBu_r', 'YlGn_r', 'YlOrBr', 'YlOrBr_r', 'YlOrRd', 'YlOrRd_r', 'afmhot',
-     'afmhot_r', 'autumn', 'autumn_r', 'binary', 'binary_r', 'bone', 'bone_r', 'brg', 'brg_r', 'bwr', 'bwr_r',
-     'cividis', 'cividis_r', 'cool', 'cool_r', 'coolwarm', 'coolwarm_r', 'copper', 'copper_r', 'cubehelix',
-     'cubehelix_r', 'flag', 'flag_r', 'gist_earth', 'gist_earth_r', 'gist_gray', 'gist_gray_r', 'gist_heat',
-     'gist_heat_r', 'gist_ncar', 'gist_ncar_r', 'gist_rainbow', 'gist_rainbow_r', 'gist_stern', 'gist_stern_r',
-     'gist_yarg', 'gist_yarg_r', 'gnuplot', 'gnuplot2', 'gnuplot2_r', 'gnuplot_r', 'gray', 'gray_r', 'hot', 'hot_r',
-     'hsv', 'hsv_r', 'inferno', 'inferno_r', 'jet', 'jet_r', 'magma', 'magma_r', 'nipy_spectral', 'nipy_spectral_r',
-     'ocean', 'ocean_r', 'pink', 'pink_r', 'plasma', 'plasma_r', 'prism', 'prism_r', 'rainbow', 'rainbow_r', 'seismic',
-     'seismic_r', 'spring', 'spring_r', 'summer', 'summer_r', 'tab10', 'tab10_r', 'tab20', 'tab20_r', 'tab20b',
-     'tab20b_r', 'tab20c', 'tab20c_r', 'terrain', 'terrain_r', 'turbo', 'turbo_r', 'twilight', 'twilight_r',
-     'twilight_shifted', 'twilight_shifted_r', 'viridis', 'viridis_r', 'winter', 'winter_r']
+              'CMRmap_r', 'Dark2', 'Dark2_r', 'GnBu', 'GnBu_r', 'Greens', 'Greens_r', 'Greys', 'Greys_r', 'OrRd',
+              'OrRd_r',
+              'Oranges', 'Oranges_r', 'PRGn', 'PRGn_r', 'Paired', 'Paired_r', 'Pastel1', 'Pastel1_r', 'Pastel2',
+              'Pastel2_r',
+              'PiYG', 'PiYG_r', 'PuBu', 'PuBuGn', 'PuBuGn_r', 'PuBu_r', 'PuOr', 'PuOr_r', 'PuRd', 'PuRd_r', 'Purples',
+              'Purples_r', 'RdBu', 'RdBu_r', 'RdGy', 'RdGy_r', 'RdPu', 'RdPu_r', 'RdYlBu', 'RdYlBu_r', 'RdYlGn',
+              'RdYlGn_r',
+              'Reds', 'Reds_r', 'Set1', 'Set1_r', 'Set2', 'Set2_r', 'Set3', 'Set3_r', 'Spectral', 'Spectral_r',
+              'Wistia',
+              'Wistia_r', 'YlGn', 'YlGnBu', 'YlGnBu_r', 'YlGn_r', 'YlOrBr', 'YlOrBr_r', 'YlOrRd', 'YlOrRd_r', 'afmhot',
+              'afmhot_r', 'autumn', 'autumn_r', 'binary', 'binary_r', 'bone', 'bone_r', 'brg', 'brg_r', 'bwr', 'bwr_r',
+              'cividis', 'cividis_r', 'cool', 'cool_r', 'coolwarm', 'coolwarm_r', 'copper', 'copper_r', 'cubehelix',
+              'cubehelix_r', 'flag', 'flag_r', 'gist_earth', 'gist_earth_r', 'gist_gray', 'gist_gray_r', 'gist_heat',
+              'gist_heat_r', 'gist_ncar', 'gist_ncar_r', 'gist_rainbow', 'gist_rainbow_r', 'gist_stern', 'gist_stern_r',
+              'gist_yarg', 'gist_yarg_r', 'gnuplot', 'gnuplot2', 'gnuplot2_r', 'gnuplot_r', 'gray', 'gray_r', 'hot',
+              'hot_r',
+              'hsv', 'hsv_r', 'inferno', 'inferno_r', 'jet', 'jet_r', 'magma', 'magma_r', 'nipy_spectral',
+              'nipy_spectral_r',
+              'ocean', 'ocean_r', 'pink', 'pink_r', 'plasma', 'plasma_r', 'prism', 'prism_r', 'rainbow', 'rainbow_r',
+              'seismic',
+              'seismic_r', 'spring', 'spring_r', 'summer', 'summer_r', 'tab10', 'tab10_r', 'tab20', 'tab20_r', 'tab20b',
+              'tab20b_r', 'tab20c', 'tab20c_r', 'terrain', 'terrain_r', 'turbo', 'turbo_r', 'twilight', 'twilight_r',
+              'twilight_shifted', 'twilight_shifted_r', 'viridis', 'viridis_r', 'winter', 'winter_r']
     cmapname = cmapname if cmapname in scales else "viridis"
     cmap = matplotlib.cm.get_cmap(cmapname)
     if cmap:
@@ -112,11 +119,12 @@ def compute_depth_scale(filename, n_classes=7, cmapname="viridis"):
             classes.append({"value": value, "label": f'{value}', "alpha": 255, "color": color})
     return classes
 
+
 def EqualIntervals(minValue, maxValue, n_classes):
     """
     EqualIntervals
     """
-    return np.linspace(minValue, maxValue, n_classes+1)
+    return np.linspace(minValue, maxValue, n_classes + 1)
 
 
 def SimpleFillSymbol(name=0, color="#ffffff", outline_color="#000000"):
@@ -135,6 +143,7 @@ def SimpleFillSymbol(name=0, color="#ffffff", outline_color="#000000"):
           <prop k="style" v="solid"/>
         </layer>
       </symbol>"""
+
 
 def compute_graduate_scale(minValue, maxValue, n_classes=7, cmapname="viridis"):
     """
@@ -172,7 +181,9 @@ def compute_graduate_scale(minValue, maxValue, n_classes=7, cmapname="viridis"):
     colors = get_colors(cmapname, n_classes)
     symbols = [SimpleFillSymbol(j, colors[j]) for j in range(len(colors))]
     classes = EqualIntervals(minValue, maxValue, n_classes)
-    ranges = [f"""<range symbol="{j}" label="{classes[j]} - {classes[j+1]}" lower="{classes[j]}" upper="{classes[j+1]}" render="true"/>""" for j in range(n_classes)]
+    ranges = [
+        f"""<range symbol="{j}" label="{classes[j]} - {classes[j + 1]}" lower="{classes[j]}" upper="{classes[j + 1]}" render="true"/>"""
+        for j in range(n_classes)]
     ranges = "\n\t".join(ranges)
     symbols = "\n\t".join(symbols)
     return f"""<ranges>\n\t{ranges}</ranges>\n<symbols>{symbols}</symbols>\n"""
@@ -196,6 +207,9 @@ def create_qlr(filename, fileqlr="", cmapname=None, fieldname=""):
         metadata = metadata["metadata"] if metadata and "metadata" in metadata else {}
 
         # Redefine sand, silt, clay cmap
+        # --------------------------------------------------------------------------------------------------------------
+        # Raster
+        # --------------------------------------------------------------------------------------------------------------
         if israster(filename):
             # assert that "type" is a valid key
             if "type" not in metadata:
@@ -262,9 +276,9 @@ def create_qlr(filename, fileqlr="", cmapname=None, fieldname=""):
             # for all tif
             for item in classes:
                 items += f"""<item color="{item["color"]}" label="{item["label"]}" value="{item["value"]}" alpha="{item["alpha"]}"/>\n"""
-        #---------------------------------------------------------------------------------------------------------------
+        # --------------------------------------------------------------------------------------------------------------
         # Vector
-        # ---------------------------------------------------------------------------------------------------------------
+        # --------------------------------------------------------------------------------------------------------------
         elif isshape(filename):
             # assert that "type" is a valid key
             if "type" not in metadata:
@@ -278,9 +292,9 @@ def create_qlr(filename, fileqlr="", cmapname=None, fieldname=""):
             if cmapname == "infiltration_rate":
                 metadata.update({"um": ""})
                 symbols = compute_graduate_scale(0, 1.0, n_classes=8, cmapname="Greens_r")
-                #filetpl = pkg_resources.resource_filename(__name__, f"data/PolygonGraduate.qlr")
+                # filetpl = pkg_resources.resource_filename(__name__, f"data/PolygonGraduate.qlr")
                 filetpl = pkg_resources.resource_filename(__name__, f"data/infiltration_rate.qlr")
-                #fieldname = "PERM"
+                # fieldname = "PERM"
             elif cmapname == "sand":
                 metadata.update({"um": "%"})
                 symbols = compute_graduate_scale(0, 100, n_classes=8, cmapname="copper")
@@ -309,17 +323,22 @@ def create_qlr(filename, fileqlr="", cmapname=None, fieldname=""):
                 metadata.update({"um": "m³"})
                 filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
                 fill_color = "#127db9"
-                #fieldname = "v"
+                # fieldname = "v"
             elif cmapname == "riverevent":
                 metadata.update({"um": "m³"})
                 filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
                 fill_color = "#ff7db9"
-                #fieldname = "v"
+                # fieldname = "v"
             elif cmapname in ("rain", "rainfall"):
                 metadata.update({"um": "mm"})
                 filetpl = pkg_resources.resource_filename(__name__, f"data/rainfall.qlr")
                 fill_color = "#0000ff"
-                fieldname = "rain"  #graduate field attribute
+                fieldname = "rain"  # graduate field attribute
+            elif cmapname == "damage":
+                # metadata.update({"um": "$"})
+                filetpl = pkg_resources.resource_filename(__name__, f"data/damage.qlr")
+                fill_color = "#0000ff"
+                fieldname = "total_loss"  # graduate field attribute
         else:
             return None
 
@@ -331,7 +350,7 @@ def create_qlr(filename, fileqlr="", cmapname=None, fieldname=""):
 
         params = {
             "id": juststem(filename) + datetime.now().strftime("_%Y%m%d%H%M%S"),
-            #"id":  f"{layername}_{md5text(filename)}",
+            # "id":  f"{layername}_{md5text(filename)}",
             "layername": layername,
             "source": justfname(filename),
             "xmin": minx,
