@@ -135,21 +135,21 @@
       </renderer-v2>
       <labeling type="simple">
         <settings calloutType="simple">
-          <text-style textOrientation="horizontal" fontWordSpacing="0" fontFamily="MS Shell Dlg 2" fontUnderline="0" fontSizeUnit="Point" useSubstitutions="0" namedStyle="Normale" fontSize="10" blendMode="0" multilineHeight="1" textOpacity="1" fieldName="{{fieldname}}" fontStrikeout="0" fontItalic="0" fontSizeMapUnitScale="3x:0,0,0,0,0,0" allowHtml="0" fontKerning="1" textColor="249,0,0,255" fontWeight="50" capitalization="0" isExpression="0" fontLetterSpacing="0" previewBkgrdColor="255,255,255,255">
-            <text-buffer bufferColor="255,255,255,255" bufferJoinStyle="128" bufferSizeMapUnitScale="3x:0,0,0,0,0,0" bufferBlendMode="0" bufferSizeUnits="MM" bufferSize="1" bufferDraw="1" bufferNoFill="1" bufferOpacity="1"/>
+          <text-style textOrientation="horizontal" fontWordSpacing="0" fontFamily="sans-serif" fontUnderline="0" fontSizeUnit="Point" useSubstitutions="0" namedStyle="Normale" fontSize="14" blendMode="0" multilineHeight="1" textOpacity="1" fieldName="{{fieldname}}" fontStrikeout="0" fontItalic="0" fontSizeMapUnitScale="3x:0,0,0,0,0,0" allowHtml="0" fontKerning="1" textColor="#dedede" fontWeight="50" capitalization="0" isExpression="0" fontLetterSpacing="0" previewBkgrdColor="255,255,255,255">
+            <text-buffer bufferColor="#000000" bufferJoinStyle="128" bufferSizeMapUnitScale="3x:0,0,0,0,0,0" bufferBlendMode="0" bufferSizeUnits="MM" bufferSize="2" bufferDraw="1" bufferNoFill="1" bufferOpacity="1"/>
             <text-mask maskJoinStyle="128" maskSizeUnits="MM" maskSizeMapUnitScale="3x:0,0,0,0,0,0" maskOpacity="1" maskedSymbolLayers="" maskEnabled="0" maskSize="1.5" maskType="0"/>
             <background shapeRotationType="0" shapeBorderWidthUnit="MM" shapeBorderWidthMapUnitScale="3x:0,0,0,0,0,0" shapeRadiiX="0" shapeSizeMapUnitScale="3x:0,0,0,0,0,0" shapeRadiiY="0" shapeSizeY="0" shapeOffsetX="0" shapeType="0" shapeOffsetMapUnitScale="3x:0,0,0,0,0,0" shapeOffsetUnit="MM" shapeSizeType="0" shapeSVGFile="" shapeFillColor="255,255,255,255" shapeOpacity="1" shapeOffsetY="0" shapeSizeX="0" shapeBorderColor="128,128,128,255" shapeBlendMode="0" shapeRadiiMapUnitScale="3x:0,0,0,0,0,0" shapeBorderWidth="0" shapeRotation="0" shapeRadiiUnit="MM" shapeSizeUnit="MM" shapeJoinStyle="64" shapeDraw="0">
               <symbol force_rhr="0" alpha="1" name="markerSymbol" type="marker" clip_to_extent="1">
                 <layer class="SimpleMarker" enabled="1" locked="0" pass="0">
                   <prop v="0" k="angle"/>
-                  <prop v="183,72,75,255" k="color"/>
+                  <prop v="#dedede" k="color"/>
                   <prop v="1" k="horizontal_anchor_point"/>
                   <prop v="bevel" k="joinstyle"/>
                   <prop v="circle" k="name"/>
                   <prop v="0,0" k="offset"/>
                   <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
                   <prop v="MM" k="offset_unit"/>
-                  <prop v="35,35,35,255" k="outline_color"/>
+                  <prop v="#00000" k="outline_color"/>
                   <prop v="solid" k="outline_style"/>
                   <prop v="0" k="outline_width"/>
                   <prop v="3x:0,0,0,0,0,0" k="outline_width_map_unit_scale"/>
