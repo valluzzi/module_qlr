@@ -317,7 +317,7 @@ def create_qlr(filename, fileqlr="", cmapname=None, fieldname=""):
             elif cmapname == "barrier":
                 metadata.update({"um": "m"})
                 filetpl = pkg_resources.resource_filename(__name__, f"data/{cmapname}.qlr")
-                fill_color = "#127db9"
+                fill_color = "#dedede"
                 fieldname = "height"
             elif cmapname == "storagetank":
                 metadata.update({"um": "m³"})
