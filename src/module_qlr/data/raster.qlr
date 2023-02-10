@@ -83,7 +83,7 @@
         <provider>
           <resampling enabled="false" zoomedInResamplingMethod="nearestNeighbour" zoomedOutResamplingMethod="nearestNeighbour" maxOversampling="2"/>
         </provider>
-        <rasterrenderer type="singlebandpseudocolor" classificationMin="0" opacity="1" nodataColor="" alphaBand="-1" band="1" classificationMax="3">
+        <rasterrenderer type="singlebandpseudocolor" classificationMin="{{minValue}}" opacity="1" nodataColor="" alphaBand="-1" band="1" classificationMax="{{maxValue}}">
           <rasterTransparency/>
           <minMaxOrigin>
             <limits>None</limits>
