@@ -94,8 +94,8 @@
             <stdDevFactor>2</stdDevFactor>
           </minMaxOrigin>
           <rastershader>
-            <colorrampshader colorRampType="INTERPOLATED" minimumValue="0" classificationMode="1" labelPrecision="4" clip="0" maximumValue="3">
-                <colorramp type="gradient" name="viridis">
+            <colorrampshader colorRampType="INTERPOLATED" minimumValue="{{minValue}}" classificationMode="1" labelPrecision="4" clip="0" maximumValue="{{maxValue}}">
+                <colorramp type="gradient" name="{{cmapname}}">
                     <prop k="color1" v="247,251,255,255"/>
                     <prop k="color2" v="8,48,107,255"/>
                     <prop k="discrete" v="0"/>

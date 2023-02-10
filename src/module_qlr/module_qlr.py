@@ -351,6 +351,7 @@ def create_qlr(filename, fileqlr="", cmapname=None, fieldname=""):
         params = {
             "id": juststem(filename) + datetime.now().strftime("_%Y%m%d%H%M%S"),
             # "id":  f"{layername}_{md5text(filename)}",
+            "cmapname": cmapname,
             "layername": layername,
             "source": justfname(filename),
             "xmin": minx,
