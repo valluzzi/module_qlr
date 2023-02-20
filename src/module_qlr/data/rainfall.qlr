@@ -89,7 +89,7 @@
           <range lower="10.0" upper="15.0" render="true" symbol="6" label="10 - 15"/>
           <range lower="15.0" upper="20.0" render="true" symbol="7" label="15 - 20"/>
           <range lower="20.0" upper="30.0" render="true" symbol="8" label="20 - 30"/>
-          <range lower="30.0" upper="50.0" render="true" symbol="9" label="60 - 50"/>
+          <range lower="30.0" upper="50.0" render="true" symbol="9" label="30 - 50"/>
           <range lower="50.0" upper="70.0" render="true" symbol="10" label="50 - 70"/>
           <range lower="70.0" upper="100.0" render="true" symbol="11" label="70 - 100"/>
           <range lower="100.0" upper="150.0" render="true" symbol="12" label="100 - 150"/>
